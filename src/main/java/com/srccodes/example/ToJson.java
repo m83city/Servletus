@@ -16,6 +16,4 @@ public class ToJson {
 			return e.toString();
 		}
 	}
-	
-
 }
