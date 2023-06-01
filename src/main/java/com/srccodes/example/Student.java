@@ -2,7 +2,9 @@ package com.srccodes.example;
 
 public class Student {
 	private int id;
-	private String name, surname, last_name;
+	private String name;
+	private String surname;
+	private String lastName;
 	
 		
 	public int getId() {
@@ -24,9 +26,9 @@ public class Student {
 		this.surname = surname;
 	}
 	public String getLast_name() {
-		return last_name;
+		return lastName;
 	}
 	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+		this.lastName = last_name;
 	}	
 }

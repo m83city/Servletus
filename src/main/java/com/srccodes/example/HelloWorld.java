@@ -9,35 +9,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/HelloWorld")
+@WebServlet("/Hello-World")
 public class HelloWorld extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Postgres postgres = new Postgres();
+	ConnectionToBase postgres = new ConnectionToBase();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter printWriter = response.getWriter();
-		Service service = new Service();
-		printWriter.print(service.onGet());
+		StudentService studentService = new StudentService();
+		printWriter.print(studentService.onGet());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Service service = new Service();
-		service.onPost(request);
+		StudentService studentService = new StudentService();
+		studentService.onPost(request);
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Service service = new Service();
-		service.onPut(request);
+		StudentService studentService = new StudentService();
+		studentService.onPut(request);
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Service service = new Service();
-		service.onDelete();
+		StudentService studentService = new StudentService();
+		studentService.onDelete();
 	}
 }
