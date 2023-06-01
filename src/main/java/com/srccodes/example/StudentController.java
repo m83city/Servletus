@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/Hello-World")
-public class HelloWorld extends HttpServlet {
+public class StudentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ConnectionToBase postgres = new ConnectionToBase();
 
@@ -20,7 +20,7 @@ public class HelloWorld extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter printWriter = response.getWriter();
 		StudentService studentService = new StudentService();
-		printWriter.print(studentService.onGet());
+		printWriter.print(studentService.onGet(request));
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -38,6 +38,6 @@ public class HelloWorld extends HttpServlet {
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		StudentService studentService = new StudentService();
-		studentService.onDelete();
+		studentService.onDelete(request);
 	}
 }

@@ -13,15 +13,17 @@ import javax.servlet.http.HttpServletRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class StudentService {
-	String getStudent = "SELECT * FROM student WHERE id = 1";
 	
-	public String onGet() {
+	public String onGet(HttpServletRequest request) {
 		List<Student> students = new ArrayList<>();
 		ToJson toJson = new ToJson();
-		ResultSet postgres = new StudentDb().StudentRequests(getStudent);
+//		String studentId = Integer.toString(mapper.readValue(inputStreamToString(request.getInputStream()), Student.class).getId());
+		Student student = new Student();
 		try {
+			ObjectMapper mapper = new ObjectMapper();
+			String studentId  = Integer.toString(mapper.readValue(inputStreamToString(request.getInputStream()), Student.class).getId());
+			ResultSet postgres = new StudentDb().StudentRequests("SELECT * FROM student WHERE id = "+ studentId +"");
 			while (postgres.next()) {
-			Student student = new Student();
 			student.setId(Integer.parseInt(postgres.getString(1)));
 			student.setName(postgres.getString(2));
 			student.setSurname(postgres.getString(3));
@@ -29,9 +31,7 @@ public class StudentService {
 			students.add(student);
 }
 			postgres.close();
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		 
@@ -76,9 +76,15 @@ public class StudentService {
 		}
 	}
 
-	public void onDelete() {
-		StudentDb postgres = new StudentDb();
-		postgres.StudentRequests( "DELETE FROM student WHERE id = 14 ;");
+	public void onDelete(HttpServletRequest request) {
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			String studentId = Integer.toString(mapper.readValue(inputStreamToString(request.getInputStream()), Student.class).getId());
+			StudentDb postgres = new StudentDb();
+			postgres.StudentRequests( "DELETE FROM student WHERE id = "+  studentId +";");			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private static String inputStreamToString(InputStream inputStream) {
