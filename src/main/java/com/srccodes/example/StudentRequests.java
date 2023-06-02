@@ -13,28 +13,11 @@ public class StudentRequests {
 				student.setSurname(postgres.studentRequests("SELECT * FROM student WHERE id = "+studentId+";").getString(2)); 
 				student.setLast_name(postgres.studentRequests("SELECT * FROM student WHERE id = "+studentId+";").getString(3)); 
 			}
-		
 			return student;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null ;
 		}
-		
-		
-//		try {
-//			List<Student> students = new ArrayList<>();
-//			Student student = new Student();
-//			ResultSet postgres = new StudentDb().StudentRequests("SELECT * FROM student WHERE id = "+ studentId +"");	
-//			student.setId();
-//			student.setName(postgres.getString(2));
-//			student.setSurname(postgres.getString(3));
-//			student.setLast_name(postgres.getString(4));
-//			students.add(student);
-//			return students;
-//		} catch (NumberFormatException | SQLException e) {
-//			e.printStackTrace();
-//			return null;
-//		}
 	}
 	public void createNewStudent(Student newStudent) {
 		StudentRepository postgres = new StudentRepository();
@@ -47,7 +30,6 @@ public class StudentRequests {
 						+ newStudent.getLast_name()
 						+ "');"
 					);
-		
 	}
 	public void updateStudent(Student updatedStudent) {
 		StudentRepository postgres = new StudentRepository();
@@ -60,7 +42,6 @@ public class StudentRequests {
 				+ "' WHERE id = " +
 				updatedStudent.getId() +
 				"");
-		
 	}
 	public void deleteStudent(String studentId) {
 			StudentRepository postgres = new StudentRepository();
