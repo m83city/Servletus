@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ToJson {
 	
-	public String objectToJson (List<Student> student) {
+	public String objectToJson (Student student) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			String json = mapper.writeValueAsString(student);

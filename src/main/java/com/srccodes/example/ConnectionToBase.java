@@ -9,7 +9,6 @@ import java.util.List;
 
 public class ConnectionToBase {
 	String url = "jdbc:postgresql://localhost/postgres?user=postgres&password=Welcome4$";
-
 	public Connection getConnection() {
 		try {
 			Connection conn = DriverManager.getConnection(url);
