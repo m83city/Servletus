@@ -5,13 +5,13 @@ public class StudentRequests {
 		try {
 			Student student = new Student();
 			System.out.println( "helo");
-			StudentDb postgres = new StudentDb();
+			StudentRepository postgres = new StudentRepository();
 
-			while (postgres.StudentRequests("SELECT * FROM student WHERE id = " + studentId +";").next()) {
-				student.setId(Integer.parseInt(postgres.StudentRequests("SELECT * FROM student WHERE id = "+studentId+";").getString(0)));
-				student.setName(postgres.StudentRequests("SELECT * FROM student WHERE id = 	"+studentId+";").getString(1)); 
-				student.setSurname(postgres.StudentRequests("SELECT * FROM student WHERE id = "+studentId+";").getString(2)); 
-				student.setLast_name(postgres.StudentRequests("SELECT * FROM student WHERE id = "+studentId+";").getString(3)); 
+			while (postgres.studentRequests("SELECT * FROM student WHERE id = " + studentId +";").next()) {
+				student.setId(Integer.parseInt(postgres.studentRequests("SELECT * FROM student WHERE id = "+studentId+";").getString(0)));
+				student.setName(postgres.studentRequests("SELECT * FROM student WHERE id = 	"+studentId+";").getString(1)); 
+				student.setSurname(postgres.studentRequests("SELECT * FROM student WHERE id = "+studentId+";").getString(2)); 
+				student.setLast_name(postgres.studentRequests("SELECT * FROM student WHERE id = "+studentId+";").getString(3)); 
 			}
 		
 			return student;
@@ -37,8 +37,8 @@ public class StudentRequests {
 //		}
 	}
 	public void createNewStudent(Student newStudent) {
-		StudentDb postgres = new StudentDb();
-		postgres.StudentRequests(
+		StudentRepository postgres = new StudentRepository();
+		postgres.studentRequests(
 				"INSERT INTO student (name, surname, last_name) VALUES ('" 
 						+ newStudent.getName() +
 						"', '" +
@@ -50,8 +50,8 @@ public class StudentRequests {
 		
 	}
 	public void updateStudent(Student updatedStudent) {
-		StudentDb postgres = new StudentDb();
-		postgres.StudentRequests( "UPDATE student SET name = '"
+		StudentRepository postgres = new StudentRepository();
+		postgres.studentRequests( "UPDATE student SET name = '"
 				+ updatedStudent.getName() +
 				"', surname = '"
 				+ updatedStudent.getSurname() +
@@ -63,7 +63,7 @@ public class StudentRequests {
 		
 	}
 	public void deleteStudent(String studentId) {
-			StudentDb postgres = new StudentDb();
-			postgres.StudentRequests( "DELETE FROM student WHERE id = "+  studentId +";");			
+			StudentRepository postgres = new StudentRepository();
+			postgres.studentRequests( "DELETE FROM student WHERE id = "+  studentId +";");			
 	}
 }

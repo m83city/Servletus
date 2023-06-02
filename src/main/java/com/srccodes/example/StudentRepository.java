@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class StudentDb {
-	public ResultSet StudentRequests (String query) {
+public class StudentRepository {
+	public ResultSet studentRequests (String query) {
 		ConnectionToBase conn = new ConnectionToBase();
      	Statement statement;
 		try {
